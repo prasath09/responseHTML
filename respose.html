@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Note</title>
+    <script>
+        // Function to extract query parameters from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // On page load, populate the queryId field from URL parameters
+        window.onload = function() {
+            const queryId = getQueryParam('queryId'); // Fetch 'queryId' parameter
+            if (queryId) {
+                document.getElementById('queryIdField').value = queryId; // Set the value in the input field
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Respond to the client</h1>
+    
+    <!-- Form to capture user input -->
+    <form action="/submit" method="POST">
+        
+        <!-- Label and text input for the Query ID -->
+        <label for="queryIdField">Query ID:</label>
+        <input type="text" id="queryIdField" name="queryId" readonly>
+        <br><br>
+        
+        <!-- Label and text area for the user's note -->
+        <label for="userNote">Your Note:</label>
+        <br>
+        <textarea id="userNote" name="userNote" rows="10" cols="50" placeholder="Enter your note here..."></textarea>
+        <br><br>
+        
+        <!-- Submit button -->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
